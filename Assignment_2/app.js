@@ -1,0 +1,18 @@
+const express = require("express");
+const logger = require("./middleware/logger");
+const studentRoutes = require("./routes/studentRoutes");
+const app = express();
+
+app.use(express.json());
+
+app.use(logger);
+
+app.use("/students",studentRoutes);
+
+app.get("/", (req,res) =>{
+    res.send("Student Management API is running");
+});
+
+app.listen(8080, () => {
+    console.log("Server started on the port 8080");
+});
